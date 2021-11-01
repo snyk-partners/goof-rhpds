@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goof
-          image: <<DOCKERID>>/goof:latest #Edit with your Docker Hub ID
+          image: <<QUAY_ID>>/goof:latest #Edit with your Quay ID
           imagePullPolicy: Always
           resources:
             requests:
@@ -28,30 +28,6 @@ spec:
           env:
             - name: DOCKER
               value: "1"
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: goof-image
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: goof-image
-      tier: frontend
-  template:
-    metadata:
-      labels:
-        app: goof-image
-        tier: frontend
-    spec:
-      containers:
-        - name: goof-image
-          image: <<DOCKERID>>/goof-image:latest #Edit with your Docker Hub ID
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 3112
-            - containerPort: 31337
 ---
 apiVersion: apps/v1
 kind: Deployment
