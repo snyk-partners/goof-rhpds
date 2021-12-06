@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goof
-          image: <<QUAY_ID>>/goof:latest #Edit with your Quay ID
+          image: snyklabs/goof:latest #Edit with your Quay ID
           imagePullPolicy: Always
           resources:
             requests:
