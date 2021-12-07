@@ -43,34 +43,33 @@ spec:
           value: "."
         - name: deleteExisting
           value: "true"
-    # - name: snyk-monitor
-    #   taskRef:
-    #     name: snyk-node
-    #   runAfter:
-    #     - fetch-repository
-    #   params:
-    #     - name: command
-    #       value: monitor
-    #   workspaces:
-    #     - name: source
-    #       workspace: shared-workspace
-    # - name: snyk-test
-    #   taskRef:
-    #     name: snyk-node
-    #   runAfter:
-    #     - snyk-monitor
-    #   params: 
-    #     - name: args 
-    #       value: ["--severity-threshold=critical --fail-on=upgradable"] 
-    #   workspaces:
-    #     - name: source
-    #       workspace: shared-workspace
+    - name: snyk-monitor
+      taskRef:
+        name: snyk-node
+      runAfter:
+        - fetch-repository
+      params:
+        - name: command
+          value: monitor
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+    - name: snyk-test
+      taskRef:
+        name: snyk-node
+      runAfter:
+        - snyk-monitor
+      params: 
+        - name: args 
+          value: ["--severity-threshold=critical", "--fail-on=upgradable"] 
+      workspaces:
+        - name: source
+          workspace: shared-workspace
     - name: build-and-push-image
       taskRef:
         name: kaniko
       runAfter:
-        # - code-analysis
-        - fetch-repository
+        - snyk-test
       workspaces:
         - name: source
           workspace: shared-workspace

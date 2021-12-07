@@ -1,0 +1,34 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: github-pr-pipeline-template
+spec:
+  params:
+    - name: gitRevision
+      description: The git revision (SHA)
+      default: develop
+    - name: gitUrl
+      description: The git repository url ("https://github.com/foo/bar.git")
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: snyk-run-
+      spec:
+        pipelineRef:
+          name: snyk-pipeline
+        params:
+          - name: gitUrl
+            value: $(tt.params.gitUrl)
+          - name: gitRevision
+            value: $(tt.params.gitRevision)
+          - name: pathToYamlFile
+            value: "manifests/goof.yaml"
+          - name: imageUrl
+            value: quay.io/odrodrig_us/goof
+          - name: imageTag
+            value: "latest" 
+        workspaces:
+          - name: shared-workspace
+            persistentvolumeclaim:
+              claimName: snyk-pvc

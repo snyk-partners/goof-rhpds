@@ -11,7 +11,7 @@ spec:
     - name: gitRevision
       value: develop
     - name: pathToYamlFile
-      value: "manifests/"
+      value: "manifests/goof.yaml"
     - name: imageUrl
       value: quay.io/odrodrig_us/goof
     - name: imageTag
