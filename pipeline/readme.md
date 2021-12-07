@@ -6,7 +6,7 @@
 
 1. The repo that you cloned in the prerequisties has a deployment file that we must edit before we deploy later on. This file currently points to the main Goof repo but instead we need to point to your copy of the repo.
 
-    - In a code editor open up `./manifests/goof-deployment` and look at line 19.
+    - In a code editor open up `./manifests/goof.yaml` and look at line 19.
 
         ```yaml
         image: snyklabs/goof:latest #Edit with your Quay ID
