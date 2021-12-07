@@ -25,7 +25,7 @@ spec:
           - name: pathToYamlFile
             value: "manifests/goof.yaml"
           - name: imageUrl
-            value: quay.io/odrodrig_us/goof
+            value: quay.io/<quay_user>/goof
           - name: imageTag
             value: "latest" 
         workspaces:
