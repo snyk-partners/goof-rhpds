@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goof
-          image: quay.io/odrodrig_us/goof:latest #Edit with your Quay ID
+          image: <<QUAY_ID>>/goof:latest #Edit with your Quay ID
           imagePullPolicy: Always
           resources:
             requests:
