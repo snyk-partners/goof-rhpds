@@ -5,6 +5,17 @@ metadata:
 spec:
   pipelineRef:
     name: snyk-pipeline
+  params:
+    - name: gitUrl
+      value: https://github.com/odrodrig/goof-rhpds.git
+    - name: gitRevision
+      value: develop
+    - name: pathToYamlFile
+      value: "manifests/"
+    - name: imageUrl
+      value: quay.io/odrodrig_us/goof
+    - name: imageTag
+      value: "latest" 
   workspaces:
     - name: shared-workspace
       persistentvolumeclaim:

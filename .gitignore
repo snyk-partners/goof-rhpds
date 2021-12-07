@@ -8,3 +8,4 @@ config.rb
 npm-debug.log
 
 .dccache
+quay-secret.yaml
