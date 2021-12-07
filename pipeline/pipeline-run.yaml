@@ -7,13 +7,13 @@ spec:
     name: snyk-pipeline
   params:
     - name: gitUrl
-      value: https://github.com/odrodrig/goof-rhpds.git
+      value: https://github.com/<github_username>/goof-rhpds.git
     - name: gitRevision
       value: develop
     - name: pathToYamlFile
       value: "manifests/goof.yaml"
     - name: imageUrl
-      value: quay.io/odrodrig_us/goof
+      value: quay.io/<quay_username>/goof
     - name: imageTag
       value: "latest" 
   workspaces:
