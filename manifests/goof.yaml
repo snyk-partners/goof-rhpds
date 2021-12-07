@@ -29,24 +29,21 @@ spec:
             - name: DOCKER
               value: "1"
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: goof-mongo
+  name: goof
 spec:
-  replicas: 1
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3001
+    name: "http"
+  - protocol: TCP
+    port: 9229
+    targetPort: 9229
+    name: "debug"
   selector:
-    matchLabels:
-      app: goof
-      tier: backend
-  template:
-    metadata:
-      labels:
-        app: goof
-        tier: backend
-    spec:
-      containers:
-        - name: goof-mongo
-          image: mongo
-          ports:
-            - containerPort: 27017
+    app: goof
+    tier: frontend
